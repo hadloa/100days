@@ -38,8 +38,6 @@ s.onkey(key='Down', fun=moveBackward)
 s.onkey(key='Left', fun=rotateCW)
 s.onkey(key='Right', fun=rotateCCW)
 s.onkey(key='space', fun=clear)
-
-
 s.listen()
 
 
