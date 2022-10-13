@@ -32,8 +32,8 @@ while gameIsOn:
         score.refresh()
         snake.extend()
 
-    x_bool = snake.head.xcor() > 280 or snake.head.xcor() < -280
-    y_bool = snake.head.ycor() > 280 or snake.head.ycor() < -280
+    x_bool = snake.head.xcor() > 295 or snake.head.xcor() < -295
+    y_bool = snake.head.ycor() > 295 or snake.head.ycor() < -295
     if x_bool or y_bool:
         score.gameOver()
         gameIsOn = False
