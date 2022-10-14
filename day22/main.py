@@ -1,11 +1,14 @@
 from turtle import Screen, Turtle
 import time
-from paddle import Paddle, LEFT, RIGHT
+from paddle import Paddle
 from scoreboard import Score, FONT, ALIGNMENT
 
 
 s = Screen()
 s.setup(width=800, height=600)
+LEFT = {'posP': (-375, 0), 'posS': (-150, 250), 'color': 'red3'}
+RIGHT = {'posP': (375, 0), 'posS': (150, 250), 'color': 'navy'}
+
 s.bgcolor("black")
 s.title('Pong')
 s.tracer(0)
@@ -16,8 +19,8 @@ paddleR = Paddle(RIGHT)
 #score
 
 s.listen()
-s.onkeypress(paddleR.up, 'Up')
-s.onkeypress(paddleR.down, 'Down')
+s.onkey(paddleR.up, 'Up')
+s.onkey(paddleR.down, 'Down')
 
 s.onkeypress(paddleL.up, 'w')
 s.onkeypress(paddleL.down, 's')

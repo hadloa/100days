@@ -2,8 +2,6 @@ from turtle import Turtle
 from scoreboard import Score
 
 MOVE_DISTANCE = 20
-LEFT = {'posP': (-375, 0), 'posS': (-150, 250), 'color': 'red3'}
-RIGHT = {'posP': (375, 0), 'posS': (150, 250), 'color': 'navy'}
 UP = 90
 DOWN = 270
 
@@ -23,12 +21,12 @@ class Paddle(Turtle):
 
 
     def up(self):
-        self.setheading(UP)
-        self.forward(MOVE_DISTANCE)
+        if self.ycor() < 260:
+            self.forward(MOVE_DISTANCE)
 
     def down(self):
-        self.setheading(DOWN)
-        self.forward(MOVE_DISTANCE)
+        if self.ycor() > -260:
+            self.backward(MOVE_DISTANCE)
 
     def stop(self):
         self.kPress = False
