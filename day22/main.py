@@ -1,6 +1,7 @@
 from turtle import Screen, Turtle
 import time
 from paddle import Paddle
+from ball import Ball
 from scoreboard import Score, FONT, ALIGNMENT
 
 
@@ -14,9 +15,8 @@ s.title('Pong')
 s.tracer(0)
 
 paddleL = Paddle(LEFT)
-#scoreL = Score('LEFT')
 paddleR = Paddle(RIGHT)
-#score
+ball = Ball()
 
 s.listen()
 s.onkey(paddleR.up, 'Up')
@@ -26,12 +26,19 @@ s.onkeypress(paddleL.up, 'w')
 s.onkeypress(paddleL.down, 's')
 
 
+ball.start()
+
 gameIsOn = True
 while gameIsOn:
     s.update()
-    time.sleep(.01)
+    ball.move()
+    ball.bounce_wall()
+    ball.bounce_paddle(paddleL, paddleR)
+    time.sleep(.1)
 
-
+    if ball.xcor() > 420 or ball.xcor() < -420:
+        ball.start()
+        time.sleep(3)
 
 
 
