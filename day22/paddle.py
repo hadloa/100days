@@ -9,11 +9,10 @@ DOWN = 270
 class Paddle(Turtle):
     def __init__(self, side):
         super().__init__()
-        #self.side = side
-        score = Score(side)
+        self.score = Score(side)
         self.shape('square')
         self.color(side['color'])
-        self.shapesize(stretch_wid=1, stretch_len=3)
+        self.shapesize(stretch_wid=1, stretch_len=5)
         self.setheading(90)
         self.penup()
         self.goto(side['posP'])
@@ -21,15 +20,15 @@ class Paddle(Turtle):
 
 
     def up(self):
-        if self.ycor() < 260:
+        if self.ycor() < 240:
             self.forward(MOVE_DISTANCE)
 
     def down(self):
-        if self.ycor() > -260:
+        if self.ycor() > -240:
             self.backward(MOVE_DISTANCE)
 
     def stop(self):
         self.kPress = False
 
-    def hit(self):
-        pass
+    def reset(self, pos):
+        self.goto(pos)

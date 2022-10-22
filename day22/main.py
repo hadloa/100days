@@ -1,5 +1,5 @@
 from turtle import Screen, Turtle
-import time
+import time, math
 from paddle import Paddle
 from ball import Ball
 from scoreboard import Score, FONT, ALIGNMENT
@@ -27,18 +27,27 @@ s.onkeypress(paddleL.down, 's')
 
 
 ball.start()
+s.update()
+s.tracer(n=1)
 
+time_start = time.time()
 gameIsOn = True
 while gameIsOn:
-    s.update()
-    ball.move()
+
+    ball.move(math.trunc((time.time() - time_start)/30)/2 + 1)
     ball.bounce_wall()
     ball.bounce_paddle(paddleL, paddleR)
     time.sleep(.1)
 
     if ball.xcor() > 420 or ball.xcor() < -420:
+        if ball.xcor() >420:
+            paddleL.score.point()
+        else:
+            paddleR.score.point()
         ball.start()
-        time.sleep(3)
+        paddleR.reset(RIGHT['posP'])
+        paddleL.reset(LEFT['posP'])
+        time.sleep(1)
 
 
 
