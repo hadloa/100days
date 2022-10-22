@@ -16,7 +16,6 @@ class Paddle(Turtle):
         self.setheading(90)
         self.penup()
         self.goto(side['posP'])
-        self.kPress = False
 
 
     def up(self):
