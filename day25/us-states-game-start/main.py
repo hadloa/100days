@@ -42,11 +42,8 @@ while len(guessed) < 50:
         break
 
 
-for state in guessed:
-    if state in states:
-        states.remove(state)
-
-missed_states = pd.DataFrame(states)
+missed_states = [state for state in states if state not in guessed]
+missed_states = pd.DataFrame(missed_states)
 missed_states.to_csv('missed_states.txt')
 
 screen.exitonclick()
