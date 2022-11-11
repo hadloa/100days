@@ -1,11 +1,45 @@
 from tkinter import *
+import time
+import pandas as pd
 
+french_words = pd.read_csv("./data/french_words.csv")
+
+current_word = None
 BACKGROUND_COLOR = "#B1DDC6"
 FONT_NAME = 'arial'
 
+# Functions---------------------------------------------------------
 
 
+def knew_it():
+    new_card(True)
 
+
+def didnt_know():
+    new_card(False)
+
+
+def new_card(did_you_know):
+    global current_word
+    current_word = french_words.sample()
+    flip_front()
+
+
+def flip_back():
+    canvas.create_image(402, 265, image=back_img)
+    label_language.config(text='English')
+    label_word.config(text=current_word.iat[0, 1])
+
+
+def flip_front():
+    canvas.create_image(402, 265, image=front_img)
+    label_language.config(text='French')
+    label_word.config(text=current_word.iat[0, 0])
+    #time.sleep(5)
+    #flip_back()
+
+
+# window------------------------------------------------------------
 window = Tk()
 window.title('Flashcards')
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
@@ -33,8 +67,8 @@ label_word = Label(text='trouve', bg='white', font=(FONT_NAME, 40, 'bold'))
 right_img = PhotoImage(file='./images/right.png')
 wrong_img = PhotoImage(file='./images/wrong.png')
 
-right_button = Button(image=right_img)
-wrong_button = Button(image=wrong_img)
+right_button = Button(image=right_img, command=knew_it)
+wrong_button = Button(image=wrong_img, command=didnt_know)
 
 
 # canvas layout---------------------------
@@ -44,12 +78,6 @@ label_word.place(x=320, y=263)
 right_button.grid(column=0, row=2)
 wrong_button.grid(column=1, row=2)
 
-
-'''
-button_start = Button(text="Start", font=FONT_NAME, command=start)
-button_start.grid(column=0, row=2)
-
-button_reset = Button(text="Reset", command=reset, font=FONT_NAME)
-button_reset.grid(column=2, row=2)
-'''
+new_card(False)
 mainloop()
+
