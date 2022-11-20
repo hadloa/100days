@@ -23,10 +23,10 @@ def is_near():
     long_near = LONG_HOME <= (lat + 5) and LONG_HOME >= (long - 5)
 
     if lat_near and long_near:
-        print("Near")
+        #print("Near")
         return True
     else:
-        print('not near')
+        #print('not near')
         return False
 
 
@@ -42,10 +42,10 @@ def is_night():
     time_now = datetime.now().hour
 
     if time_now > sunset or time_now < sunrise:
-        print('dark')
+        #print('dark')
         return True
     else:
-        print('light')
+        #print('light')
         return False
 
 
